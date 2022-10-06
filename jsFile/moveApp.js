@@ -117,7 +117,8 @@ next.addEventListener('click', () => {
     pageNumber++
     prev.style.opacity = '1'
     if (pageNumber == 20) {
-        pageNumber = 1
+        pageNumber = 1;
+        getSecondPage(pageNumber)
     } else {
         count.innerHTML = pageNumber;
         getSecondPage(pageNumber)
@@ -146,15 +147,14 @@ articalContainer.addEventListener('click', e => {
 // search on move
 searchBtn.addEventListener('click', () => {
     if (search.value === '') {
-        articalContainer.innerHTML = ''
-        API_URL = BASE_URL + '/discover/movie?sort_by=popularity.desc&' + API_KEY
-        getApiInfo(API_URL, showMove)
+        API_URL = BASE_URL + '/discover/movie?sort_by=popularity.desc&' + API_KEY;
     } else {
-        articalContainer.innerHTML = ''
         API_URL = searchURL + '&query=' + search.value
         search.value = ''
-        getApiInfo(API_URL, showMove)
     };
+    articalContainer.innerHTML = ''
+    filterBtn.textContent = 'All';
+    getApiInfo(API_URL, showMove)
 });
 // show all options
 filterBtn.addEventListener('click', () => {
@@ -165,18 +165,16 @@ filterBtn.addEventListener('click', () => {
 genrs.addEventListener('click', (e) => {
     if (e.target.textContent === 'All') {
         API_URL = BASE_URL + '/discover/movie?sort_by=popularity.desc&' + API_KEY;
-        articalContainer.innerHTML = '';
-        filterBtn.textContent = e.target.textContent;
-        option.classList.remove('showFilterOption')
-        getApiInfo(API_URL, showMove)
-
     } else {
         API_URL = geners(e.target.textContent);
-        articalContainer.innerHTML = '';
-        filterBtn.textContent = e.target.textContent;
-        option.classList.remove('showFilterOption')
-        getApiInfo(API_URL, showMove)
     }
+    option.classList.remove('showFilterOption')
+    articalContainer.innerHTML = '';
+    filterBtn.textContent = e.target.textContent;
+    pageNumber = 1;
+    count.textContent = 1;
+    prev.style.opacity = '0.5'
+    getApiInfo(API_URL, showMove)
 });
 
 getApiInfo(API_URL, showMove)
@@ -195,7 +193,7 @@ function showMove(data) {
     // console.log(data);
     if (allMoveis == undefined) {
         alert('check the internet connected')
-        console.log('wait');
+        // console.log('wait');
     }
     else {
         //add the  moveis in container

@@ -19,7 +19,9 @@ height:150px;
     position: relative;
     min-height: 40px;
  */
-
+html {
+    font-family: monospace;
+}
 
 
 :root {
@@ -250,6 +252,7 @@ section.one-move .youtube-video iframe {
 }
 
 section.one-move .close-move-btn {
+    font-family: sans-serif;
     display: block;
     margin: 5px;
     padding: 5px;
