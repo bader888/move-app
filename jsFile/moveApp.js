@@ -152,6 +152,9 @@ searchBtn.addEventListener('click', () => {
         API_URL = searchURL + '&query=' + search.value
         search.value = ''
     };
+    pageNumber = 1;
+    count.textContent = 1;
+    prev.style.opacity = '0.5'
     articalContainer.innerHTML = ''
     filterBtn.textContent = 'All';
     getApiInfo(API_URL, showMove)
